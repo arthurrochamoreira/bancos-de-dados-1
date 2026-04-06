@@ -1,0 +1,63 @@
+site_name: Bancos de Dados
+repo_url: https://github.com/arthurrochamoreira/bancos-de-dados-1
+repo_name: bancos-de-dados-1
+extra_css:
+  - css/custom-general.css
+  - css/night-sky.css
+  - css/shooting-stars.css
+  - css/table.css
+  
+extra_javascript:
+  - https://code.jquery.com/jquery-3.6.0.min.js
+  - js/interactive.js
+  - js/shooting-stars.js
+  - js/starfield.js
+  - js/night-sky.js
+  - js/translate.js
+  - js/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+
+plugins:
+  - search
+  - mermaid2
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.footer
+    - navigation.sections
+    - navigation.index
+    #- toc.integrate
+    - search.suggest
+    - search.highlight
+    - content.code.annotate
+    - content.code.copy
+    - header.autohide
+    - announce.dismiss
+
+  language: pt-BR
+  font:
+    text: Roboto Mono
+    code: Roboto Mono
+    heading: Montserrat
+
+  palette:
+    - scheme: slate
+      primary: deep purple
+      accent: deep orange
+
+nav:
+  - Home: index.md
+  - Modulo 1:
+      - Algebra relacional: modulo_1/aula2.md
+      - União: modulo_1/aula2_uniao.md
+      
