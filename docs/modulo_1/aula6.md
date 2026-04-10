@@ -10,3 +10,5 @@ GROUP BY Cliente
 HAVING COUNT (*) > 1
 
 MIN AVG MAX SUM (Unicas agregadoras que vão cair na prova)
+
+Não usar FROM CLiente, Carro (VIRA PRODUTO CARTESIANO, MUITO CARO)
