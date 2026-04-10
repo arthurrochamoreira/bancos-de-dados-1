@@ -9,6 +9,8 @@
       
       
       
+        <link rel="prev" href="../..">
+      
       
       
         
@@ -19,7 +21,7 @@
     
     
       
-        <title>Guia SQL — Do Zero às Consultas Avançadas - Bancos de Dados</title>
+        <title>Resumo - Bancos de Dados</title>
       
     
     
@@ -114,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Guia SQL — Do Zero às Consultas Avançadas
+              Resumo
             
           </span>
         </div>
@@ -224,11 +226,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../aula2.md" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
           
   
   
@@ -322,26 +326,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -359,7 +368,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -374,17 +383,44 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../aula2.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resumo
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
     
   
-    Algebra relacional
+    Resumo
   
 
     
@@ -393,34 +429,896 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../aula2_uniao.md" class="md-nav__link">
+      
         
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
   
   
-  <span class="md-ellipsis">
+  
     
   
-    União
   
-
-    
-  </span>
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#indice-de-navegacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Índice de Navegação
+      
+    </span>
+  </a>
   
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-o-que-e-um-banco-de-dados-relacional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. O que é um banco de dados relacional
+      
+    </span>
+  </a>
   
-
-      </a>
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-terminologia-formal-do-modelo-relacional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Terminologia formal do modelo relacional
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-chaves-primaria-candidata-e-estrangeira" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Chaves: primária, candidata e estrangeira
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Chaves: primária, candidata e estrangeira">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#superchave" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Superchave
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chave-candidata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chave candidata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chave-primaria-pk-primary-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chave primária (PK — Primary Key)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chave-estrangeira-fk-foreign-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chave estrangeira (FK — Foreign Key)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-restricoes-e-integridade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Restrições e integridade
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-o-que-e-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. O que é SQL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-a-ordem-de-execucao-das-clausulas-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. A ordem de execução das cláusulas SQL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. A ordem de execução das cláusulas SQL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ordem-de-escrita-sintaxe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ordem de escrita (sintaxe)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordem-de-execucao-logica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ordem de execução (lógica)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-select-consultando-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. SELECT — consultando dados
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. SELECT — consultando dados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ver-a-tabela-inteira" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ver a tabela inteira
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selecionar-colunas-especificas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Selecionar colunas específicas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usar-aliases-apelidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usar aliases (apelidos)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combinar-colunas-com-expressoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Combinar colunas com expressões
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qualificar-colunas-com-o-nome-da-tabela" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qualificar colunas com o nome da tabela
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-where-filtrando-linhas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. WHERE — filtrando linhas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. WHERE — filtrando linhas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#operadores-de-comparacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operadores de comparação
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operadores-logicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operadores lógicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#between-intervalo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BETWEEN — intervalo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in-lista-de-valores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IN — lista de valores
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-distinct-eliminando-duplicatas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. DISTINCT — eliminando duplicatas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. DISTINCT — eliminando duplicatas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sem-distinct-com-repeticoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sem DISTINCT — com repetições
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#com-distinct-valores-unicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Com DISTINCT — valores únicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-null-valores-ausentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. NULL — valores ausentes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. NULL — valores ausentes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tres-interpretacoes-de-null" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Três interpretações de NULL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-armadilha-das-comparacoes-com-null" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A armadilha das comparações com NULL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-forma-correta-is-null-e-is-not-null" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A forma correta: IS NULL e IS NOT NULL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#null-em-operacoes-matematicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NULL em operações matemáticas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#null-em-funcoes-de-agregacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NULL em funções de agregação
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-operadores-de-texto-like-_" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Operadores de texto — LIKE, %, _
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Operadores de texto — LIKE, %, _">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-operador-like" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O operador LIKE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#o-curinga-zero-ou-mais-caracteres" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O curinga % — zero ou mais caracteres
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#o-curinga-_-exatamente-um-caractere" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O curinga _ — exatamente um caractere
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combinando-e-_" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Combinando % e _
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#not-like" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NOT LIKE
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-operadores-matematicos-em-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Operadores matemáticos em SQL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Operadores matemáticos em SQL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exemplos-praticos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exemplos práticos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#divisao-inteira-cuidado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Divisão inteira — cuidado!
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#precedencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Precedência
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-order-by-ordenando-resultados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. ORDER BY — ordenando resultados
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. ORDER BY — ordenando resultados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sintaxe-basica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sintaxe básica
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordenar-por-multiplas-colunas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ordenar por múltiplas colunas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#order-by-com-alias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ORDER BY com alias
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#posicao-da-clausula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Posição da cláusula
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-join-cruzando-tabelas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. JOIN — cruzando tabelas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. JOIN — cruzando tabelas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#por-que-os-dados-ficam-em-tabelas-separadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Por que os dados ficam em tabelas separadas?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sintaxe-do-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sintaxe do JOIN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#join-com-where" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JOIN com WHERE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#join-com-multiplas-tabelas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JOIN com múltiplas tabelas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#o-que-acontece-internamente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que acontece internamente
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-a-diferenca-entre-inner-left-e-right-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. A diferença entre INNER, LEFT e RIGHT JOIN
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. A diferença entre INNER, LEFT e RIGHT JOIN">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dados-de-referencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dados de referência
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inner-join-ou-apenas-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        INNER JOIN (ou apenas JOIN)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#left-join-left-outer-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LEFT JOIN (LEFT OUTER JOIN)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#right-join-right-outer-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RIGHT JOIN (RIGHT OUTER JOIN)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumo-visual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumo visual
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-group-by-e-having-agrupando-e-filtrando-grupos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. GROUP BY e HAVING — agrupando e filtrando grupos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16. GROUP BY e HAVING — agrupando e filtrando grupos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-problema-que-group-by-resolve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O problema que GROUP BY resolve
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#funcoes-de-agregacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Funções de agregação
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sintaxe-do-group-by" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sintaxe do GROUP BY
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#having-filtrando-grupos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HAVING — filtrando grupos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-vs-having-a-distincao-crucial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WHERE vs HAVING — a distinção crucial
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-consulta-completa-exemplo-integrador" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Consulta completa — exemplo integrador
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="17. Consulta completa — exemplo integrador">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-problema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O problema
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-solucao-passo-a-passo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A solução, passo a passo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lendo-a-consulta-na-ordem-de-execucao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lendo a consulta na ordem de execução
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anatomia-das-clausulas-opcionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anatomia das cláusulas opcionais
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencia-rapida-armadilhas-comuns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referência rápida — Armadilhas comuns
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2223,6 +3121,28 @@ ORDER BY total DESC;
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
+        
+          
+          <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="Anterior: Home">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Home
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
