@@ -7,7 +7,7 @@ Repositório que deve ser utilizado como template inicial para a documentação 
 ## 1. Clone este repositório
 
 ```bash
-git clone https://github.com/
+git clone https://github.com/arthurrochamoreira/bancos-de-dados-1.git
 ```
 
 ## 2. Pré-requisitos
