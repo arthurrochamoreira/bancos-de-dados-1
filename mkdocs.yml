@@ -58,6 +58,4 @@ theme:
 nav:
   - Home: index.md
   - Modulo 1:
-      - Algebra relacional: modulo_1/aula2.md
-      - União: modulo_1/aula2_uniao.md
-      
+      - Resumo: modulo_1/resumo_geral.md
