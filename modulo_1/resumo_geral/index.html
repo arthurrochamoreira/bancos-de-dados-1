@@ -1,0 +1,2276 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Guia SQL — Do Zero às Consultas Avançadas - Bancos de Dados</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto Mono";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/custom-general.css">
+    
+      <link rel="stylesheet" href="../../css/night-sky.css">
+    
+      <link rel="stylesheet" href="../../css/shooting-stars.css">
+    
+      <link rel="stylesheet" href="../../css/table.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#guia-sql-do-zero-as-consultas-avancadas" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../.." title="Bancos de Dados" class="md-header__button md-logo" aria-label="Bancos de Dados" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bancos de Dados
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Guia SQL — Do Zero às Consultas Avançadas
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/arthurrochamoreira/bancos-de-dados-1" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bancos-de-dados-1
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../aula2.md" class="md-tabs__link">
+          
+  
+  
+  Modulo 1
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Bancos de Dados" class="md-nav__button md-logo" aria-label="Bancos de Dados" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Bancos de Dados
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/arthurrochamoreira/bancos-de-dados-1" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bancos-de-dados-1
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modulo 1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Modulo 1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aula2.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algebra relacional
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aula2_uniao.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    União
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#indice-de-navegacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Índice de Navegação
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-o-que-e-um-banco-de-dados-relacional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. O que é um banco de dados relacional
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-terminologia-formal-do-modelo-relacional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Terminologia formal do modelo relacional
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-chaves-primaria-candidata-e-estrangeira" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Chaves: primária, candidata e estrangeira
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Chaves: primária, candidata e estrangeira">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#superchave" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Superchave
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chave-candidata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chave candidata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chave-primaria-pk-primary-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chave primária (PK — Primary Key)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chave-estrangeira-fk-foreign-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chave estrangeira (FK — Foreign Key)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-restricoes-e-integridade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Restrições e integridade
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-o-que-e-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. O que é SQL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-a-ordem-de-execucao-das-clausulas-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. A ordem de execução das cláusulas SQL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. A ordem de execução das cláusulas SQL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ordem-de-escrita-sintaxe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ordem de escrita (sintaxe)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordem-de-execucao-logica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ordem de execução (lógica)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-select-consultando-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. SELECT — consultando dados
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. SELECT — consultando dados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ver-a-tabela-inteira" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ver a tabela inteira
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selecionar-colunas-especificas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Selecionar colunas específicas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usar-aliases-apelidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usar aliases (apelidos)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combinar-colunas-com-expressoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Combinar colunas com expressões
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qualificar-colunas-com-o-nome-da-tabela" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qualificar colunas com o nome da tabela
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-where-filtrando-linhas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. WHERE — filtrando linhas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. WHERE — filtrando linhas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#operadores-de-comparacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operadores de comparação
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operadores-logicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operadores lógicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#between-intervalo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BETWEEN — intervalo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in-lista-de-valores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IN — lista de valores
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-distinct-eliminando-duplicatas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. DISTINCT — eliminando duplicatas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. DISTINCT — eliminando duplicatas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sem-distinct-com-repeticoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sem DISTINCT — com repetições
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#com-distinct-valores-unicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Com DISTINCT — valores únicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-null-valores-ausentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. NULL — valores ausentes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. NULL — valores ausentes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tres-interpretacoes-de-null" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Três interpretações de NULL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-armadilha-das-comparacoes-com-null" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A armadilha das comparações com NULL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-forma-correta-is-null-e-is-not-null" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A forma correta: IS NULL e IS NOT NULL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#null-em-operacoes-matematicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NULL em operações matemáticas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#null-em-funcoes-de-agregacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NULL em funções de agregação
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-operadores-de-texto-like-_" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Operadores de texto — LIKE, %, _
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Operadores de texto — LIKE, %, _">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-operador-like" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O operador LIKE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#o-curinga-zero-ou-mais-caracteres" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O curinga % — zero ou mais caracteres
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#o-curinga-_-exatamente-um-caractere" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O curinga _ — exatamente um caractere
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combinando-e-_" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Combinando % e _
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#not-like" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NOT LIKE
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-operadores-matematicos-em-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Operadores matemáticos em SQL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Operadores matemáticos em SQL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exemplos-praticos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exemplos práticos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#divisao-inteira-cuidado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Divisão inteira — cuidado!
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#precedencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Precedência
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-order-by-ordenando-resultados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. ORDER BY — ordenando resultados
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. ORDER BY — ordenando resultados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sintaxe-basica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sintaxe básica
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordenar-por-multiplas-colunas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ordenar por múltiplas colunas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#order-by-com-alias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ORDER BY com alias
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#posicao-da-clausula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Posição da cláusula
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-join-cruzando-tabelas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. JOIN — cruzando tabelas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. JOIN — cruzando tabelas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#por-que-os-dados-ficam-em-tabelas-separadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Por que os dados ficam em tabelas separadas?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sintaxe-do-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sintaxe do JOIN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#join-com-where" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JOIN com WHERE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#join-com-multiplas-tabelas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JOIN com múltiplas tabelas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#o-que-acontece-internamente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que acontece internamente
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-a-diferenca-entre-inner-left-e-right-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. A diferença entre INNER, LEFT e RIGHT JOIN
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. A diferença entre INNER, LEFT e RIGHT JOIN">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dados-de-referencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dados de referência
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inner-join-ou-apenas-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        INNER JOIN (ou apenas JOIN)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#left-join-left-outer-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LEFT JOIN (LEFT OUTER JOIN)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#right-join-right-outer-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RIGHT JOIN (RIGHT OUTER JOIN)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumo-visual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumo visual
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-group-by-e-having-agrupando-e-filtrando-grupos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. GROUP BY e HAVING — agrupando e filtrando grupos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16. GROUP BY e HAVING — agrupando e filtrando grupos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-problema-que-group-by-resolve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O problema que GROUP BY resolve
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#funcoes-de-agregacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Funções de agregação
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sintaxe-do-group-by" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sintaxe do GROUP BY
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#having-filtrando-grupos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HAVING — filtrando grupos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-vs-having-a-distincao-crucial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WHERE vs HAVING — a distinção crucial
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-consulta-completa-exemplo-integrador" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Consulta completa — exemplo integrador
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="17. Consulta completa — exemplo integrador">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-problema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O problema
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-solucao-passo-a-passo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A solução, passo a passo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lendo-a-consulta-na-ordem-de-execucao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lendo a consulta na ordem de execução
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anatomia-das-clausulas-opcionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anatomia das cláusulas opcionais
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencia-rapida-armadilhas-comuns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referência rápida — Armadilhas comuns
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="guia-sql-do-zero-as-consultas-avancadas">Guia SQL — Do Zero às Consultas Avançadas</h1>
+<blockquote>
+<p><strong>Como usar este guia:</strong> Cada seção é autocontida. Você pode chegar aqui por qualquer caminho — de uma busca, de um link, ou lendo do início. Cada tópico explica seu próprio contexto.</p>
+</blockquote>
+<hr />
+<h2 id="indice-de-navegacao">Índice de Navegação</h2>
+<table>
+<thead>
+<tr>
+<th>Seção</th>
+<th>O que você vai aprender</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#1-o-que-é-um-banco-de-dados-relacional">1. O que é um banco de dados relacional</a></td>
+<td>Conceito, tabelas, linhas e colunas</td>
+</tr>
+<tr>
+<td><a href="#2-terminologia-formal-do-modelo-relacional">2. Terminologia formal do modelo relacional</a></td>
+<td>Relação, tupla, atributo, domínio</td>
+</tr>
+<tr>
+<td><a href="#3-chaves-primária-candidata-e-estrangeira">3. Chaves: primária, candidata e estrangeira</a></td>
+<td>Identificar e relacionar dados</td>
+</tr>
+<tr>
+<td><a href="#4-restrições-e-integridade">4. Restrições e integridade</a></td>
+<td>NOT NULL, unicidade, integridade referencial</td>
+</tr>
+<tr>
+<td><a href="#5-o-que-é-sql">5. O que é SQL</a></td>
+<td>A linguagem de consulta</td>
+</tr>
+<tr>
+<td><a href="#6-a-ordem-de-execução-das-cláusulas-sql">6. A ordem de execução das cláusulas SQL</a></td>
+<td>FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY</td>
+</tr>
+<tr>
+<td><a href="#7-select--consultando-dados">7. SELECT — consultando dados</a></td>
+<td>Obter colunas de uma tabela</td>
+</tr>
+<tr>
+<td><a href="#8-where--filtrando-linhas">8. WHERE — filtrando linhas</a></td>
+<td>Operadores condicionais e lógicos</td>
+</tr>
+<tr>
+<td><a href="#9-distinct--eliminando-duplicatas">9. DISTINCT — eliminando duplicatas</a></td>
+<td>Quando e como usar</td>
+</tr>
+<tr>
+<td><a href="#10-null--valores-ausentes">10. NULL — valores ausentes</a></td>
+<td>O que é NULL, IS NULL, IS NOT NULL</td>
+</tr>
+<tr>
+<td><a href="#11-operadores-de-texto--like--_">11. Operadores de texto — LIKE, %, _</a></td>
+<td>Buscas por padrão em strings</td>
+</tr>
+<tr>
+<td><a href="#12-operadores-matemáticos-em-sql">12. Operadores matemáticos em SQL</a></td>
+<td>Cálculos dentro das consultas</td>
+</tr>
+<tr>
+<td><a href="#13-order-by--ordenando-resultados">13. ORDER BY — ordenando resultados</a></td>
+<td>ASC e DESC</td>
+</tr>
+<tr>
+<td><a href="#14-join--cruzando-tabelas">14. JOIN — cruzando tabelas</a></td>
+<td>INNER, LEFT, RIGHT JOIN com exemplos reais</td>
+</tr>
+<tr>
+<td><a href="#15-a-diferença-entre-inner-left-e-right-join">15. A diferença entre INNER, LEFT e RIGHT JOIN</a></td>
+<td>Quando cada um retorna linhas diferentes</td>
+</tr>
+<tr>
+<td><a href="#16-group-by-e-having--agrupando-e-filtrando-grupos">16. GROUP BY e HAVING — agrupando e filtrando grupos</a></td>
+<td>Agregações com condições</td>
+</tr>
+<tr>
+<td><a href="#17-consulta-completa--exemplo-integrador">17. Consulta completa — exemplo integrador</a></td>
+<td>Tudo junto em um só exemplo</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="1-o-que-e-um-banco-de-dados-relacional">1. O que é um banco de dados relacional</h2>
+<p>Você está começando do zero, ou quer entender por que SQL existe antes de sair digitando código.</p>
+<p>Um <strong>banco de dados</strong> é uma coleção organizada de dados armazenados e gerenciados por um software chamado <strong>SGBD</strong> (Sistema Gerenciador de Banco de Dados — ex: MySQL, PostgreSQL, SQL Server, Oracle).</p>
+<p>No modelo <strong>relacional</strong>, os dados são organizados em <strong>tabelas</strong> (também chamadas de <em>relações</em>). Cada tabela armazena informações sobre um único assunto — pacientes, produtos, pedidos, etc.</p>
+<p><strong>Exemplo mental:</strong> imagine uma clínica médica.
+- Uma tabela <code>Medico</code> guarda dados dos médicos.
+- Uma tabela <code>Consulta</code> guarda os atendimentos realizados.
+- Essas duas tabelas se relacionam: cada consulta tem um médico responsável.</p>
+<p>Um banco de dados pode conter dezenas ou centenas de tabelas que se relacionam entre si.</p>
+<p><strong>→ Próximos passos:</strong> <a href="#2-terminologia-formal-do-modelo-relacional">Terminologia formal</a> | <a href="#5-o-que-é-sql">O que é SQL</a></p>
+<hr />
+<h2 id="2-terminologia-formal-do-modelo-relacional">2. Terminologia formal do modelo relacional</h2>
+<p>Se você veio de um livro acadêmico ou de uma aula de banco de dados, vai encontrar esses termos em vez de "tabela", "linha" e "coluna".</p>
+<p>O modelo relacional tem uma linguagem matemática própria. Veja a correspondência:</p>
+<table>
+<thead>
+<tr>
+<th>Termo formal</th>
+<th>Equivalente prático</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Relação</strong></td>
+<td>Tabela</td>
+</tr>
+<tr>
+<td><strong>Tupla</strong></td>
+<td>Linha (uma linha da tabela)</td>
+</tr>
+<tr>
+<td><strong>Atributo</strong></td>
+<td>Coluna (cabeçalho da tabela)</td>
+</tr>
+<tr>
+<td><strong>Domínio</strong></td>
+<td>Conjunto de valores válidos para uma coluna</td>
+</tr>
+<tr>
+<td><strong>Grau</strong></td>
+<td>Número de atributos (colunas) de uma relação</td>
+</tr>
+<tr>
+<td><strong>Cardinalidade</strong></td>
+<td>Número de tuplas (linhas) de uma relação</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Domínio</strong> é o conjunto de valores possíveis para um atributo. Por exemplo:
+- O domínio de <code>Sexo</code> pode ser <code>{'M', 'F'}</code>.
+- O domínio de <code>Idade</code> pode ser todos os inteiros positivos.
+- O domínio de <code>CPF</code> pode ser strings de 11 dígitos.</p>
+<p><strong>Importante:</strong> numa relação, cada valor de tupla deve ser <strong>atômico</strong> — indivisível. Isso é chamado de <em>pressuposto da primeira forma normal</em> (1FN). Não existe "lista dentro de uma célula" no modelo relacional puro.</p>
+<p><strong>Valores NULL</strong> representam dados desconhecidos ou inaplicáveis. Por exemplo, um médico autônomo pode não ter e-mail cadastrado — esse campo fica NULL.</p>
+<p><strong>→ Próximos passos:</strong> <a href="#3-chaves-primária-candidata-e-estrangeira">Chaves</a> | <a href="#10-null--valores-ausentes">NULL em detalhe</a></p>
+<hr />
+<h2 id="3-chaves-primaria-candidata-e-estrangeira">3. Chaves: primária, candidata e estrangeira</h2>
+<p>Você precisa entender como as tabelas se identificam e se relacionam. As chaves são o mecanismo central para isso.</p>
+<h3 id="superchave">Superchave</h3>
+<p>Qualquer conjunto de atributos que identifica unicamente cada tupla de uma relação. Toda relação tem pelo menos uma superchave: o conjunto de todos os seus atributos.</p>
+<h3 id="chave-candidata">Chave candidata</h3>
+<p>Uma superchave <strong>mínima</strong> — da qual não podemos remover nenhum atributo sem perder a unicidade.</p>
+<p><strong>Exemplo:</strong> na tabela <code>Carro</code>, tanto <code>Placa</code> quanto <code>Numero_chassi</code> identificam cada carro unicamente. Ambas são chaves candidatas.</p>
+<h3 id="chave-primaria-pk-primary-key">Chave primária (PK — <em>Primary Key</em>)</h3>
+<p>A chave candidata escolhida para identificar oficialmente cada tupla. Convenção: sublinhada nos diagramas.</p>
+<ul>
+<li><strong>Nunca pode ser NULL</strong> (restrição de integridade de entidade).</li>
+<li><strong>Nunca pode se repetir</strong> na mesma tabela.</li>
+</ul>
+<pre><code>Medico (codigo, nome, email, CRM, codcid)
+          ↑
+     chave primária
+</code></pre>
+<h3 id="chave-estrangeira-fk-foreign-key">Chave estrangeira (FK — <em>Foreign Key</em>)</h3>
+<p>Um atributo (ou conjunto de atributos) em uma tabela que referencia a chave primária de outra tabela. É o mecanismo que cria o relacionamento entre tabelas.</p>
+<pre><code>Consulta (data, hora, codpac, codmed, valor, codconv)
+                              ↑
+              chave estrangeira → referencia Medico.codigo
+</code></pre>
+<p><strong>Regra:</strong> o valor de uma chave estrangeira deve corresponder a um valor existente na tabela referenciada — ou ser NULL. Isso é a <strong>restrição de integridade referencial</strong>.</p>
+<p><strong>→ Próximos passos:</strong> <a href="#4-restrições-e-integridade">Restrições</a> | <a href="#14-join--cruzando-tabelas">JOIN — cruzando tabelas via FK</a></p>
+<hr />
+<h2 id="4-restricoes-e-integridade">4. Restrições e integridade</h2>
+<p>Você quer entender por que o banco de dados rejeita certas inserções ou atualizações.</p>
+<p>O modelo relacional define quatro categorias de restrições que garantem a qualidade dos dados:</p>
+<p><strong>1. Restrições de domínio</strong>
+Cada valor inserido numa coluna deve pertencer ao domínio definido para aquela coluna. Tentar inserir texto numa coluna numérica viola essa restrição.</p>
+<p><strong>2. Restrições de chave</strong>
+Não podem existir duas tuplas com o mesmo valor de chave primária na mesma tabela.</p>
+<p><strong>3. Restrição de NOT NULL</strong>
+Atributos marcados como NOT NULL não aceitam valores ausentes. A chave primária <em>sempre</em> é implicitamente NOT NULL.</p>
+<p><strong>4. Integridade referencial</strong>
+Um valor de chave estrangeira deve existir como chave primária na tabela referenciada. Você não pode inserir uma consulta referenciando um médico com código inexistente.</p>
+<p><strong>Por que isso importa na prática?</strong>
+Sem essas restrições, o banco aceitaria dados inconsistentes: consultas sem médico, produtos sem preço, pedidos para clientes inexistentes.</p>
+<p><strong>→ Próximos passos:</strong> <a href="#3-chaves-primária-candidata-e-estrangeira">Chaves</a> | <a href="#10-null--valores-ausentes">NULL</a></p>
+<hr />
+<h2 id="5-o-que-e-sql">5. O que é SQL</h2>
+<p>Você sabe que precisa aprender SQL, mas não sabe exatamente o que ela é.</p>
+<p><strong>SQL</strong> (<em>Structured Query Language</em> — Linguagem de Consulta Estruturada) é a linguagem padrão para interagir com bancos de dados relacionais. Ela permite:</p>
+<ul>
+<li><strong>Consultar dados</strong> (SELECT) — perguntar ao banco o que você quer ver</li>
+<li><strong>Inserir dados</strong> (INSERT) — adicionar novas linhas</li>
+<li><strong>Atualizar dados</strong> (UPDATE) — modificar linhas existentes</li>
+<li><strong>Deletar dados</strong> (DELETE) — remover linhas</li>
+<li><strong>Criar estruturas</strong> (CREATE TABLE, ALTER TABLE) — definir tabelas e colunas</li>
+</ul>
+<p>Este guia foca nas <strong>consultas</strong> (SELECT), que é onde a maioria das pessoas começa e onde fica mais tempo.</p>
+<p>SQL é <strong>declarativa</strong>: você descreve <em>o que</em> quer, não <em>como</em> buscar. O banco de dados decide a estratégia de execução.</p>
+<pre><code class="language-sql">-- Você diz O QUÊ quer:
+SELECT nome FROM Medico WHERE codcid = 1;
+
+-- O banco decide COMO buscar (índice, varredura, etc.)
+</code></pre>
+<p><strong>→ Próximos passos:</strong> <a href="#6-a-ordem-de-execução-das-cláusulas-sql">Ordem de execução das cláusulas</a> | <a href="#7-select--consultando-dados">SELECT</a></p>
+<hr />
+<h2 id="6-a-ordem-de-execucao-das-clausulas-sql">6. A ordem de execução das cláusulas SQL</h2>
+<p>Você escreve SQL numa ordem, mas o banco executa em outra. Entender isso explica muitos erros e comportamentos inesperados.</p>
+<p>A ordem em que você <em>escreve</em> uma consulta SQL <strong>não</strong> é a ordem em que ela é <em>executada</em>.</p>
+<h3 id="ordem-de-escrita-sintaxe">Ordem de escrita (sintaxe)</h3>
+<pre><code class="language-sql">SELECT   &lt;colunas&gt;
+FROM     &lt;tabela(s)&gt;
+WHERE    &lt;condição sobre linhas&gt;
+GROUP BY &lt;colunas de agrupamento&gt;
+HAVING   &lt;condição sobre grupos&gt;
+ORDER BY &lt;colunas de ordenação&gt;
+</code></pre>
+<h3 id="ordem-de-execucao-logica">Ordem de execução (lógica)</h3>
+<table>
+<thead>
+<tr>
+<th>Passo</th>
+<th>Cláusula</th>
+<th>O que acontece</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1º</td>
+<td><code>FROM</code></td>
+<td>Identifica a(s) tabela(s) fonte</td>
+</tr>
+<tr>
+<td>2º</td>
+<td><code>WHERE</code></td>
+<td>Filtra linhas individuais</td>
+</tr>
+<tr>
+<td>3º</td>
+<td><code>GROUP BY</code></td>
+<td>Agrupa as linhas restantes</td>
+</tr>
+<tr>
+<td>4º</td>
+<td><code>HAVING</code></td>
+<td>Filtra grupos formados</td>
+</tr>
+<tr>
+<td>5º</td>
+<td><code>SELECT</code></td>
+<td>Seleciona as colunas a exibir</td>
+</tr>
+<tr>
+<td>6º</td>
+<td><code>ORDER BY</code></td>
+<td>Ordena o resultado final</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Consequência prática:</strong> você não pode usar um alias definido no SELECT dentro do WHERE, porque WHERE é executado <em>antes</em> do SELECT.</p>
+<pre><code class="language-sql">-- ERRADO: 'total' não existe ainda quando WHERE é avaliado
+SELECT valor * 2 AS total
+FROM Consulta
+WHERE total &gt; 200;
+
+-- CORRETO: repita a expressão no WHERE
+SELECT valor * 2 AS total
+FROM Consulta
+WHERE valor * 2 &gt; 200;
+</code></pre>
+<p><strong>→ Próximos passos:</strong> <a href="#7-select--consultando-dados">SELECT</a> | <a href="#8-where--filtrando-linhas">WHERE</a> | <a href="#16-group-by-e-having--agrupando-e-filtrando-grupos">GROUP BY e HAVING</a></p>
+<hr />
+<h2 id="7-select-consultando-dados">7. SELECT — consultando dados</h2>
+<p>Você quer extrair dados de uma tabela. O SELECT é o ponto de partida de toda consulta.</p>
+<h3 id="ver-a-tabela-inteira">Ver a tabela inteira</h3>
+<pre><code class="language-sql">SELECT * FROM Medico;
+</code></pre>
+<p>O <code>*</code> significa "todas as colunas". Útil para explorar, mas evite em produção — traz colunas desnecessárias e pode ser lento.</p>
+<h3 id="selecionar-colunas-especificas">Selecionar colunas específicas</h3>
+<pre><code class="language-sql">SELECT nome, email FROM Medico;
+</code></pre>
+<p>Resultado: somente as colunas <code>nome</code> e <code>email</code>, todas as linhas.</p>
+<h3 id="usar-aliases-apelidos">Usar aliases (apelidos)</h3>
+<pre><code class="language-sql">SELECT nome AS medico, CRM AS registro FROM Medico;
+</code></pre>
+<p>Aliases renomeiam colunas no resultado. Não alteram a tabela original.</p>
+<h3 id="combinar-colunas-com-expressoes">Combinar colunas com expressões</h3>
+<pre><code class="language-sql">SELECT nome, valor * 1.1 AS valor_com_taxa FROM Consulta;
+</code></pre>
+<h3 id="qualificar-colunas-com-o-nome-da-tabela">Qualificar colunas com o nome da tabela</h3>
+<p>Quando você cruza múltiplas tabelas, use <code>Tabela.coluna</code> para evitar ambiguidade:</p>
+<pre><code class="language-sql">SELECT Medico.nome, Consulta.valor
+FROM Medico
+JOIN Consulta ON Medico.codigo = Consulta.codmed;
+</code></pre>
+<p>Você também pode usar apelidos de tabela (aliases de tabela) para encurtar:</p>
+<pre><code class="language-sql">SELECT M.nome, C.valor
+FROM Medico M
+JOIN Consulta C ON M.codigo = C.codmed;
+</code></pre>
+<p><strong>→ Próximos passos:</strong> <a href="#8-where--filtrando-linhas">WHERE</a> | <a href="#9-distinct--eliminando-duplicatas">DISTINCT</a> | <a href="#14-join--cruzando-tabelas">JOIN</a></p>
+<hr />
+<h2 id="8-where-filtrando-linhas">8. WHERE — filtrando linhas</h2>
+<p>Você não quer <em>todas</em> as linhas da tabela — quer apenas as que satisfazem uma condição.</p>
+<p>O WHERE funciona como um filtro aplicado linha por linha. Só passam as linhas onde a condição é verdadeira.</p>
+<h3 id="operadores-de-comparacao">Operadores de comparação</h3>
+<table>
+<thead>
+<tr>
+<th>Operador</th>
+<th>Significado</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>=</code></td>
+<td>Igual</td>
+<td><code>WHERE valor = 100</code></td>
+</tr>
+<tr>
+<td><code>!=</code> ou <code>&lt;&gt;</code></td>
+<td>Diferente</td>
+<td><code>WHERE valor != 100</code></td>
+</tr>
+<tr>
+<td><code>&gt;</code></td>
+<td>Maior que</td>
+<td><code>WHERE valor &gt; 100</code></td>
+</tr>
+<tr>
+<td><code>&gt;=</code></td>
+<td>Maior ou igual</td>
+<td><code>WHERE valor &gt;= 100</code></td>
+</tr>
+<tr>
+<td><code>&lt;</code></td>
+<td>Menor que</td>
+<td><code>WHERE valor &lt; 50</code></td>
+</tr>
+<tr>
+<td><code>&lt;=</code></td>
+<td>Menor ou igual</td>
+<td><code>WHERE valor &lt;= 50</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="operadores-logicos">Operadores lógicos</h3>
+<pre><code class="language-sql">-- AND: ambas as condições devem ser verdadeiras
+SELECT * FROM Consulta WHERE valor &gt; 50 AND codmed = 3;
+
+-- OR: pelo menos uma condição deve ser verdadeira
+SELECT * FROM Consulta WHERE valor &gt; 100 OR codmed = 1;
+
+-- NOT: inverte a condição
+SELECT * FROM Medico WHERE NOT codcid = 1;
+</code></pre>
+<h3 id="between-intervalo">BETWEEN — intervalo</h3>
+<pre><code class="language-sql">SELECT * FROM Consulta WHERE valor BETWEEN 50 AND 100;
+-- equivale a: WHERE valor &gt;= 50 AND valor &lt;= 100
+</code></pre>
+<h3 id="in-lista-de-valores">IN — lista de valores</h3>
+<pre><code class="language-sql">SELECT * FROM Medico WHERE codcid IN (1, 4, 5);
+-- equivale a: WHERE codcid = 1 OR codcid = 4 OR codcid = 5
+</code></pre>
+<p><strong>→ Próximos passos:</strong> <a href="#10-null--valores-ausentes">NULL e IS NULL</a> | <a href="#11-operadores-de-texto--like--_">LIKE e padrões de texto</a> | <a href="#6-a-ordem-de-execução-das-cláusulas-sql">Ordem de execução</a></p>
+<hr />
+<h2 id="9-distinct-eliminando-duplicatas">9. DISTINCT — eliminando duplicatas</h2>
+<p>Sua consulta está retornando linhas repetidas e você quer apenas valores únicos.</p>
+<p>Quando você faz JOIN entre tabelas, ou quando múltiplas linhas têm o mesmo valor na coluna que você quer ver, o resultado pode ter repetições.</p>
+<h3 id="sem-distinct-com-repeticoes">Sem DISTINCT — com repetições</h3>
+<pre><code class="language-sql">SELECT M.nome
+FROM Medico M
+JOIN Consulta C ON M.codigo = C.codmed
+WHERE M.codcid = 1;
+</code></pre>
+<p>Resultado (cada consulta gera uma linha):</p>
+<pre><code>nome
+-----------
+Paulo Rangel
+Paulo Rangel
+Luara dos Santos
+Luara dos Santos
+Luara dos Santos
+</code></pre>
+<h3 id="com-distinct-valores-unicos">Com DISTINCT — valores únicos</h3>
+<pre><code class="language-sql">SELECT DISTINCT M.nome
+FROM Medico M
+JOIN Consulta C ON M.codigo = C.codmed
+WHERE M.codcid = 1;
+</code></pre>
+<p>Resultado:</p>
+<pre><code>nome
+-----------
+Paulo Rangel
+Luara dos Santos
+</code></pre>
+<p><strong>Quando usar DISTINCT:</strong>
+- Quando você quer saber <em>quais</em> valores existem, não <em>quantas vezes</em> cada um aparece.
+- Quando o JOIN inevitavelmente multiplica linhas (um médico com várias consultas aparece várias vezes).</p>
+<p><strong>Quando NÃO usar:</strong>
+- Quando você precisa da contagem exata de ocorrências.
+- Como "conserto" para um JOIN incorreto — corrija o JOIN em vez de mascarar com DISTINCT.</p>
+<p><strong>→ Próximos passos:</strong> <a href="#14-join--cruzando-tabelas">JOIN</a> | <a href="#16-group-by-e-having--agrupando-e-filtrando-grupos">GROUP BY para agrupar e contar</a></p>
+<hr />
+<h2 id="10-null-valores-ausentes">10. NULL — valores ausentes</h2>
+<p>Você está filtrando dados e percebeu que comparações normais não funcionam com valores nulos.</p>
+<p><strong>NULL</strong> não é zero. Não é uma string vazia <code>""</code>. NULL significa <em>ausência de valor</em> — o valor é desconhecido, inexistente ou inaplicável.</p>
+<h3 id="tres-interpretacoes-de-null">Três interpretações de NULL</h3>
+<ol>
+<li><strong>Valor desconhecido:</strong> o médico tem e-mail, mas não foi informado.</li>
+<li><strong>Valor inexistente:</strong> o campo não se aplica a essa tupla (um autônomo não tem CRM de empresa).</li>
+<li><strong>Valor não disponível:</strong> o dado existe, mas não está acessível no momento.</li>
+</ol>
+<h3 id="a-armadilha-das-comparacoes-com-null">A armadilha das comparações com NULL</h3>
+<pre><code class="language-sql">-- ERRADO: isso nunca retorna nada!
+SELECT * FROM Medico WHERE email = NULL;
+SELECT * FROM Medico WHERE email != NULL;
+</code></pre>
+<p>NULL não é igual a nada — nem a outro NULL. Toda comparação com NULL retorna um resultado especial: <em>desconhecido</em>. O WHERE só deixa passar resultados <em>verdadeiros</em>, não <em>desconhecidos</em>.</p>
+<h3 id="a-forma-correta-is-null-e-is-not-null">A forma correta: IS NULL e IS NOT NULL</h3>
+<pre><code class="language-sql">-- Médicos SEM e-mail cadastrado:
+SELECT * FROM Medico WHERE email IS NULL;
+
+-- Médicos COM e-mail cadastrado:
+SELECT * FROM Medico WHERE email IS NOT NULL;
+</code></pre>
+<h3 id="null-em-operacoes-matematicas">NULL em operações matemáticas</h3>
+<p>Qualquer operação aritmética com NULL retorna NULL:</p>
+<pre><code class="language-sql">SELECT 100 + NULL;  -- resultado: NULL
+SELECT NULL * 5;    -- resultado: NULL
+</code></pre>
+<h3 id="null-em-funcoes-de-agregacao">NULL em funções de agregação</h3>
+<p>Funções como <code>COUNT</code>, <code>SUM</code>, <code>AVG</code> <strong>ignoram</strong> valores NULL automaticamente. <code>COUNT(coluna)</code> conta apenas valores não-nulos; <code>COUNT(*)</code> conta todas as linhas.</p>
+<p><strong>→ Próximos passos:</strong> <a href="#8-where--filtrando-linhas">WHERE</a> | <a href="#15-a-diferença-entre-inner-left-e-right-join">LEFT JOIN e NULLs</a></p>
+<hr />
+<h2 id="11-operadores-de-texto-like-_">11. Operadores de texto — LIKE, %, _</h2>
+<p>Você precisa buscar por texto que você conhece parcialmente — o início de um nome, parte de um e-mail, etc.</p>
+<p>Para buscas por padrão em colunas de texto, SQL oferece o operador <code>LIKE</code> combinado com caracteres coringa.</p>
+<h3 id="o-operador-like">O operador LIKE</h3>
+<pre><code class="language-sql">SELECT * FROM Medico WHERE nome LIKE 'Paulo%';
+</code></pre>
+<h3 id="o-curinga-zero-ou-mais-caracteres">O curinga % — zero ou mais caracteres</h3>
+<p><code>%</code> substitui qualquer sequência de caracteres (inclusive nenhum).</p>
+<pre><code class="language-sql">-- Nomes que começam com &quot;Paulo&quot;
+SELECT * FROM Medico WHERE nome LIKE 'Paulo%';
+-- retorna: Paulo Rangel
+
+-- Nomes que terminam com &quot;Santos&quot;
+SELECT * FROM Medico WHERE nome LIKE '%Santos';
+-- retorna: Luara dos Santos, Luan dos Santos
+
+-- Nomes que contêm &quot;Ana&quot; em qualquer posição
+SELECT * FROM Medico WHERE nome LIKE '%Ana%';
+-- retorna: Ana Maria, Carla Ana
+</code></pre>
+<h3 id="o-curinga-_-exatamente-um-caractere">O curinga _ — exatamente um caractere</h3>
+<p><code>_</code> substitui exatamente um caractere qualquer.</p>
+<pre><code class="language-sql">-- E-mails com exatamente 2 caracteres antes do @
+SELECT * FROM Medico WHERE email LIKE '__@%';
+-- O padrão é: qualquer char, qualquer char, @, qualquer coisa
+
+-- Nomes onde o segundo caractere é &quot;a&quot;
+SELECT * FROM Medico WHERE nome LIKE '_a%';
+-- retorna: Carla Ana, Nena Lina (segundo char é 'a')
+</code></pre>
+<h3 id="combinando-e-_">Combinando % e _</h3>
+<pre><code class="language-sql">-- Palavras de exatamente 4 caracteres
+SELECT * FROM Tabela WHERE coluna LIKE '____';
+-- 4 underscores = 4 caracteres exatos
+
+-- Começa com 'N', depois qualquer coisa, termina com 'a'
+SELECT * FROM Medico WHERE nome LIKE 'N%a';
+</code></pre>
+<h3 id="not-like">NOT LIKE</h3>
+<pre><code class="language-sql">-- Médicos cujo nome NÃO começa com &quot;Paulo&quot;
+SELECT * FROM Medico WHERE nome NOT LIKE 'Paulo%';
+</code></pre>
+<p><strong>→ Próximos passos:</strong> <a href="#8-where--filtrando-linhas">WHERE</a> | <a href="#10-null--valores-ausentes">NULL</a></p>
+<hr />
+<h2 id="12-operadores-matematicos-em-sql">12. Operadores matemáticos em SQL</h2>
+<p>Você precisa fazer cálculos sobre os dados — preços com desconto, médias, totais.</p>
+<p>SQL suporta operações matemáticas diretamente nas colunas:</p>
+<table>
+<thead>
+<tr>
+<th>Operador</th>
+<th>Operação</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>+</code></td>
+<td>Adição</td>
+<td><code>valor + 10</code></td>
+</tr>
+<tr>
+<td><code>-</code></td>
+<td>Subtração</td>
+<td><code>valor - 5</code></td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>Multiplicação</td>
+<td><code>valor * 1.1</code></td>
+</tr>
+<tr>
+<td><code>/</code></td>
+<td>Divisão</td>
+<td><code>valor / 2</code></td>
+</tr>
+<tr>
+<td><code>%</code></td>
+<td>Módulo (resto)</td>
+<td><code>codigo % 2</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="exemplos-praticos">Exemplos práticos</h3>
+<pre><code class="language-sql">-- Exibir o valor da consulta com 10% de acréscimo
+SELECT codmed, valor, valor * 1.1 AS valor_com_taxa
+FROM Consulta;
+
+-- Calcular diferença em relação a uma referência
+SELECT nome, valor - 100 AS diferenca_da_media
+FROM Consulta
+WHERE valor &gt; 100;
+</code></pre>
+<h3 id="divisao-inteira-cuidado">Divisão inteira — cuidado!</h3>
+<p>Em alguns SGBDs, dividir dois inteiros retorna um inteiro (sem decimais). Use CAST ou garanta que ao menos um operando seja decimal:</p>
+<pre><code class="language-sql">SELECT 7 / 2;       -- pode retornar 3 (inteiro)
+SELECT 7 / 2.0;     -- retorna 3.5
+SELECT 7.0 / 2;     -- retorna 3.5
+</code></pre>
+<h3 id="precedencia">Precedência</h3>
+<p>Segue as regras matemáticas normais: <code>*</code> e <code>/</code> antes de <code>+</code> e <code>-</code>. Use parênteses para controlar a ordem:</p>
+<pre><code class="language-sql">SELECT (valor + 50) * 0.9 AS valor_final FROM Consulta;
+</code></pre>
+<p><strong>→ Próximos passos:</strong> <a href="#7-select--consultando-dados">SELECT com expressões</a> | <a href="#16-group-by-e-having--agrupando-e-filtrando-grupos">GROUP BY e funções de agregação</a></p>
+<hr />
+<h2 id="13-order-by-ordenando-resultados">13. ORDER BY — ordenando resultados</h2>
+<p>Você quer controlar a ordem em que os resultados aparecem — por data, por nome, por valor.</p>
+<p>Por padrão, o banco de dados não garante nenhuma ordem específica nos resultados. Para garantir uma ordenação, use <code>ORDER BY</code>.</p>
+<h3 id="sintaxe-basica">Sintaxe básica</h3>
+<pre><code class="language-sql">SELECT nome, valor
+FROM Consulta
+ORDER BY valor;          -- ascendente (padrão)
+
+SELECT nome, valor
+FROM Consulta
+ORDER BY valor DESC;     -- descendente (maior para menor)
+
+SELECT nome, valor
+FROM Consulta
+ORDER BY valor ASC;      -- ascendente explícito
+</code></pre>
+<h3 id="ordenar-por-multiplas-colunas">Ordenar por múltiplas colunas</h3>
+<pre><code class="language-sql">-- Primeiro por data (mais recente), depois por valor (maior)
+SELECT data, codmed, valor
+FROM Consulta
+ORDER BY data DESC, valor DESC;
+</code></pre>
+<p>O banco ordena primeiro pela primeira coluna. Em caso de empate, ordena pela segunda, e assim por diante.</p>
+<h3 id="order-by-com-alias">ORDER BY com alias</h3>
+<pre><code class="language-sql">SELECT nome, valor * 1.1 AS valor_final
+FROM Consulta
+ORDER BY valor_final DESC;
+-- Aqui o alias funciona porque ORDER BY é executado depois do SELECT
+</code></pre>
+<h3 id="posicao-da-clausula">Posição da cláusula</h3>
+<p><code>ORDER BY</code> sempre é a última cláusula — é o passo 6 da <a href="#6-a-ordem-de-execução-das-cláusulas-sql">ordem de execução</a>.</p>
+<p><strong>→ Próximos passos:</strong> <a href="#7-select--consultando-dados">SELECT</a> | <a href="#17-consulta-completa--exemplo-integrador">Consulta completa</a></p>
+<hr />
+<h2 id="14-join-cruzando-tabelas">14. JOIN — cruzando tabelas</h2>
+<p>Seus dados estão em tabelas separadas e você precisa combiná-los em uma só consulta.</p>
+<p>JOIN é a operação que combina linhas de duas tabelas com base numa condição de junção — normalmente uma chave estrangeira ligando-se a uma chave primária.</p>
+<h3 id="por-que-os-dados-ficam-em-tabelas-separadas">Por que os dados ficam em tabelas separadas?</h3>
+<p>Por <strong>normalização</strong> — a boa prática de não repetir dados. Em vez de guardar o nome do médico em cada linha de <code>Consulta</code>, guardamos apenas o <code>codmed</code> (chave estrangeira) e buscamos o nome na tabela <code>Medico</code> quando necessário.</p>
+<h3 id="sintaxe-do-join">Sintaxe do JOIN</h3>
+<pre><code class="language-sql">SELECT M.nome, C.valor, C.data
+FROM Medico M
+JOIN Consulta C ON M.codigo = C.codmed;
+</code></pre>
+<ul>
+<li><code>FROM Medico M</code> — tabela base com alias <code>M</code></li>
+<li><code>JOIN Consulta C</code> — tabela a cruzar com alias <code>C</code></li>
+<li><code>ON M.codigo = C.codmed</code> — condição de junção: o código do médico deve ser o mesmo nos dois lados</li>
+</ul>
+<h3 id="join-com-where">JOIN com WHERE</h3>
+<p>Você pode filtrar linhas <em>depois</em> do cruzamento:</p>
+<pre><code class="language-sql">-- Médicos da cidade 1 que têm consultas com valor acima de 100
+SELECT DISTINCT M.nome
+FROM Medico M
+JOIN Consulta C ON M.codigo = C.codmed
+WHERE M.codcid = 1 AND C.valor &gt; 100;
+</code></pre>
+<h3 id="join-com-multiplas-tabelas">JOIN com múltiplas tabelas</h3>
+<pre><code class="language-sql">SELECT M.nome, P.nome AS paciente, C.valor
+FROM Medico M
+JOIN Consulta C ON M.codigo = C.codmed
+JOIN Paciente P ON C.codpac = P.codigo
+WHERE C.valor &gt; 100;
+</code></pre>
+<h3 id="o-que-acontece-internamente">O que acontece internamente</h3>
+<p>O banco combina cada linha de <code>Medico</code> com cada linha de <code>Consulta</code> onde a condição ON é verdadeira. O resultado é um conjunto de linhas combinadas que você pode filtrar com WHERE, agrupar com GROUP BY, etc.</p>
+<p><strong>→ Próximos passos:</strong> <a href="#15-a-diferença-entre-inner-left-e-right-join">INNER vs LEFT vs RIGHT JOIN</a> | <a href="#9-distinct--eliminando-duplicatas">DISTINCT com JOIN</a></p>
+<hr />
+<h2 id="15-a-diferenca-entre-inner-left-e-right-join">15. A diferença entre INNER, LEFT e RIGHT JOIN</h2>
+<p>Você já entende o JOIN básico, mas quer saber quando usar cada variante — especialmente quando precisa incluir registros sem correspondência.</p>
+<h3 id="dados-de-referencia">Dados de referência</h3>
+<p>Vamos usar as tabelas de exemplo dos materiais:</p>
+<p><strong>Tabela <code>Medico</code></strong> (médicos da cidade 1): Paulo Rangel (cod. 1), Luara dos Santos (cod. 7), Luan dos Santos (cod. 8), Carolina Pereira (cod. 110).</p>
+<p><strong>Tabela <code>Consulta</code></strong>: tem registros para os médicos de código 1, 2, 3, 4, 7. Não tem consultas para Luan dos Santos (8) nem Carolina Pereira (110).</p>
+<hr />
+<h3 id="inner-join-ou-apenas-join">INNER JOIN (ou apenas JOIN)</h3>
+<p>Retorna <strong>apenas as linhas com correspondência nas duas tabelas</strong>. Quem não tem par é excluído.</p>
+<pre><code class="language-sql">SELECT DISTINCT M.nome
+FROM Medico M
+JOIN Consulta C ON M.codigo = C.codmed
+WHERE M.codcid = 1;
+</code></pre>
+<p>Resultado:</p>
+<pre><code>nome
+-----------
+Paulo Rangel
+Luara dos Santos
+</code></pre>
+<p>Luan dos Santos e Carolina Pereira ficam de fora — não têm consultas.</p>
+<hr />
+<h3 id="left-join-left-outer-join">LEFT JOIN (LEFT OUTER JOIN)</h3>
+<p>Retorna <strong>todas as linhas da tabela da esquerda</strong> (a que vem no FROM), mesmo que não haja correspondência na tabela da direita. Onde não há correspondência, as colunas da tabela da direita aparecem como NULL.</p>
+<pre><code class="language-sql">SELECT DISTINCT M.nome
+FROM Medico M
+LEFT JOIN Consulta C ON M.codigo = C.codmed
+WHERE M.codcid = 1;
+</code></pre>
+<p>Resultado:</p>
+<pre><code>nome
+-----------
+Paulo Rangel
+Luara dos Santos
+Luan dos Santos
+Carolina Pereira
+</code></pre>
+<p>Agora todos os médicos da cidade 1 aparecem — inclusive os que nunca atenderam nenhuma consulta.</p>
+<p><strong>Uso típico:</strong> encontrar registros sem correspondência ("médicos que nunca tiveram consulta").</p>
+<pre><code class="language-sql">-- Médicos sem nenhuma consulta:
+SELECT M.nome
+FROM Medico M
+LEFT JOIN Consulta C ON M.codigo = C.codmed
+WHERE C.codmed IS NULL;
+</code></pre>
+<hr />
+<h3 id="right-join-right-outer-join">RIGHT JOIN (RIGHT OUTER JOIN)</h3>
+<p>Retorna <strong>todas as linhas da tabela da direita</strong>, mesmo sem correspondência na tabela da esquerda.</p>
+<pre><code class="language-sql">SELECT DISTINCT M.nome
+FROM Medico M
+RIGHT JOIN Consulta C ON M.codigo = C.codmed
+WHERE M.codcid = 1;
+</code></pre>
+<p>Resultado:</p>
+<pre><code>nome
+-----------
+Paulo Rangel
+Luara dos Santos
+</code></pre>
+<p>Aqui, a tabela da direita (<code>Consulta</code>) é a que comanda — o WHERE sobre <code>M.codcid = 1</code> filtra os médicos antes de decidir quais consultas incluir. O resultado fica igual ao INNER JOIN neste caso porque as consultas dos médicos 8 e 110 simplesmente não existem.</p>
+<p><strong>Dica prática:</strong> RIGHT JOIN pode ser sempre reescrito como LEFT JOIN trocando a ordem das tabelas. Muitos desenvolvedores preferem usar apenas LEFT JOIN por clareza.</p>
+<hr />
+<h3 id="resumo-visual">Resumo visual</h3>
+<pre><code>Medico: [Paulo] [Luara] [Luan] [Carolina]
+Consulta: [Paulo ✓] [Luara ✓] [--] [--]
+
+INNER JOIN → Paulo, Luara  (só quem tem par)
+LEFT JOIN  → Paulo, Luara, Luan, Carolina  (todos os médicos)
+RIGHT JOIN → Paulo, Luara  (todos os registros de Consulta que existem)
+</code></pre>
+<p><strong>→ Próximos passos:</strong> <a href="#10-null--valores-ausentes">NULL e IS NULL</a> | <a href="#9-distinct--eliminando-duplicatas">DISTINCT</a></p>
+<hr />
+<h2 id="16-group-by-e-having-agrupando-e-filtrando-grupos">16. GROUP BY e HAVING — agrupando e filtrando grupos</h2>
+<p>Você quer saber totais, médias ou contagens por categoria — não linha por linha.</p>
+<h3 id="o-problema-que-group-by-resolve">O problema que GROUP BY resolve</h3>
+<p>Você tem 13 linhas de consulta e quer saber: <em>quantas consultas cada médico realizou?</em> Sem GROUP BY, você precisaria fazer uma consulta por médico. Com GROUP BY, uma só consulta resolve.</p>
+<h3 id="funcoes-de-agregacao">Funções de agregação</h3>
+<p>Antes de GROUP BY, você precisa conhecer as funções que resumem grupos:</p>
+<table>
+<thead>
+<tr>
+<th>Função</th>
+<th>O que faz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>COUNT(coluna)</code></td>
+<td>Conta linhas não-nulas</td>
+</tr>
+<tr>
+<td><code>COUNT(*)</code></td>
+<td>Conta todas as linhas do grupo</td>
+</tr>
+<tr>
+<td><code>SUM(coluna)</code></td>
+<td>Soma os valores</td>
+</tr>
+<tr>
+<td><code>AVG(coluna)</code></td>
+<td>Calcula a média</td>
+</tr>
+<tr>
+<td><code>MAX(coluna)</code></td>
+<td>Retorna o maior valor</td>
+</tr>
+<tr>
+<td><code>MIN(coluna)</code></td>
+<td>Retorna o menor valor</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sintaxe-do-group-by">Sintaxe do GROUP BY</h3>
+<pre><code class="language-sql">SELECT codmed, COUNT(*) AS total_consultas, SUM(valor) AS receita_total
+FROM Consulta
+GROUP BY codmed;
+</code></pre>
+<p>Resultado: uma linha por médico, com o total de consultas e a soma dos valores.</p>
+<p><strong>Regra importante:</strong> No SELECT de uma consulta com GROUP BY, você só pode incluir:
+- Colunas que estão no GROUP BY
+- Funções de agregação</p>
+<p>Qualquer outra coluna gera erro ou resultado imprevisível.</p>
+<h3 id="having-filtrando-grupos">HAVING — filtrando grupos</h3>
+<p>WHERE filtra linhas individuais <em>antes</em> do agrupamento. HAVING filtra <em>grupos</em> — depois do GROUP BY.</p>
+<pre><code class="language-sql">-- Médicos com mais de 3 consultas:
+SELECT codmed, COUNT(*) AS total
+FROM Consulta
+GROUP BY codmed
+HAVING COUNT(*) &gt; 3;
+
+-- Médicos cuja receita total supera 200:
+SELECT codmed, SUM(valor) AS receita
+FROM Consulta
+GROUP BY codmed
+HAVING SUM(valor) &gt; 200;
+</code></pre>
+<h3 id="where-vs-having-a-distincao-crucial">WHERE vs HAVING — a distinção crucial</h3>
+<pre><code class="language-sql">-- WHERE filtra ANTES de agrupar (elimina linhas)
+-- HAVING filtra DEPOIS de agrupar (elimina grupos)
+
+SELECT codmed, COUNT(*) AS total
+FROM Consulta
+WHERE valor &gt; 50         -- só conta consultas acima de 50
+GROUP BY codmed
+HAVING COUNT(*) &gt;= 2;    -- só mostra médicos com 2+ dessas consultas
+</code></pre>
+<p><strong>→ Próximos passos:</strong> <a href="#17-consulta-completa--exemplo-integrador">Consulta completa</a> | <a href="#13-order-by--ordenando-resultados">ORDER BY</a></p>
+<hr />
+<h2 id="17-consulta-completa-exemplo-integrador">17. Consulta completa — exemplo integrador</h2>
+<p>Você já aprendeu todas as peças. Aqui elas se encaixam numa consulta real.</p>
+<h3 id="o-problema">O problema</h3>
+<blockquote>
+<p>"Liste o nome dos médicos da cidade 1 que realizaram mais de 2 consultas com valor acima de R$80, ordenados pelo total de consultas em ordem decrescente."</p>
+</blockquote>
+<h3 id="a-solucao-passo-a-passo">A solução, passo a passo</h3>
+<pre><code class="language-sql">SELECT   M.nome,                        -- (5º) seleciona nome e contagem
+         COUNT(*) AS total_consultas
+FROM     Medico M                       -- (1º) tabela base
+JOIN     Consulta C                     -- (1º) cruzamento
+         ON M.codigo = C.codmed
+WHERE    M.codcid = 1                   -- (2º) filtra cidade do médico
+         AND C.valor &gt; 80              --       e valor da consulta
+GROUP BY M.nome                         -- (3º) agrupa por médico
+HAVING   COUNT(*) &gt; 2                   -- (4º) só grupos com mais de 2
+ORDER BY total_consultas DESC;          -- (6º) ordena do maior para menor
+</code></pre>
+<h3 id="lendo-a-consulta-na-ordem-de-execucao">Lendo a consulta na ordem de execução</h3>
+<ol>
+<li><strong>FROM + JOIN:</strong> busca dados de <code>Medico</code> e <code>Consulta</code>, cruzando onde <code>codigo = codmed</code></li>
+<li><strong>WHERE:</strong> fica apenas com médicos da cidade 1 cujas consultas valem mais de R$80</li>
+<li><strong>GROUP BY:</strong> agrupa as linhas restantes por nome do médico</li>
+<li><strong>HAVING:</strong> elimina grupos com 2 ou menos consultas</li>
+<li><strong>SELECT:</strong> para cada grupo que sobrou, mostra o nome e a contagem</li>
+<li><strong>ORDER BY:</strong> ordena do médico com mais consultas para o com menos</li>
+</ol>
+<h3 id="anatomia-das-clausulas-opcionais">Anatomia das cláusulas opcionais</h3>
+<p>Nenhuma cláusula além de <code>SELECT</code> e <code>FROM</code> é obrigatória. Você usa cada uma quando precisa:</p>
+<pre><code class="language-sql">-- Consulta mínima válida:
+SELECT nome FROM Medico;
+
+-- Adicionando filtro:
+SELECT nome FROM Medico WHERE codcid = 1;
+
+-- Adicionando cruzamento:
+SELECT M.nome FROM Medico M JOIN Consulta C ON M.codigo = C.codmed WHERE M.codcid = 1;
+
+-- Adicionando deduplicação:
+SELECT DISTINCT M.nome FROM Medico M JOIN Consulta C ON M.codigo = C.codmed WHERE M.codcid = 1;
+
+-- Adicionando agrupamento e ordenação:
+SELECT M.nome, COUNT(*) AS total
+FROM Medico M JOIN Consulta C ON M.codigo = C.codmed
+WHERE M.codcid = 1
+GROUP BY M.nome
+ORDER BY total DESC;
+</code></pre>
+<hr />
+<h2 id="referencia-rapida-armadilhas-comuns">Referência rápida — Armadilhas comuns</h2>
+<table>
+<thead>
+<tr>
+<th>Armadilha</th>
+<th>O que acontece</th>
+<th>Solução</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WHERE coluna = NULL</code></td>
+<td>Nunca retorna nada</td>
+<td>Use <code>IS NULL</code></td>
+</tr>
+<tr>
+<td>Alias no WHERE</td>
+<td>Erro ou comportamento inesperado</td>
+<td>Repita a expressão</td>
+</tr>
+<tr>
+<td>SELECT coluna não agrupada</td>
+<td>Erro ou dado aleatório</td>
+<td>Inclua no GROUP BY ou use agregação</td>
+</tr>
+<tr>
+<td>JOIN sem ON</td>
+<td>Produto cartesiano (todos × todos)</td>
+<td>Sempre especifique a condição ON</td>
+</tr>
+<tr>
+<td>INNER JOIN descartando registros sem par</td>
+<td>Perde dados que você precisava</td>
+<td>Use LEFT JOIN</td>
+</tr>
+<tr>
+<td>ORDER BY sem direção</td>
+<td>Ascendente por padrão</td>
+<td>Especifique ASC ou DESC explicitamente</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>Baseado em: Elmasri &amp; Navathe — Sistemas de Banco de Dados (6ª ed.) · Lynn Beighley — Use a Cabeça SQL · Material de aula SQL-INNERs</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.sections", "navigation.index", "search.suggest", "search.highlight", "content.code.annotate", "content.code.copy", "header.autohide", "announce.dismiss"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      
+        <script src="../../js/interactive.js"></script>
+      
+        <script src="../../js/shooting-stars.js"></script>
+      
+        <script src="../../js/starfield.js"></script>
+      
+        <script src="../../js/night-sky.js"></script>
+      
+        <script src="../../js/translate.js"></script>
+      
+        <script src="../../js/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

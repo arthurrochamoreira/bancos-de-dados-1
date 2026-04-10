@@ -1,0 +1,869 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Aula 2 - Bancos de Dados</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto Mono";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/custom-general.css">
+    
+      <link rel="stylesheet" href="../../css/night-sky.css">
+    
+      <link rel="stylesheet" href="../../css/shooting-stars.css">
+    
+      <link rel="stylesheet" href="../../css/table.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-conceitos-basicos" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../.." title="Bancos de Dados" class="md-header__button md-logo" aria-label="Bancos de Dados" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bancos de Dados
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Aula 2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/arthurrochamoreira/bancos-de-dados-1" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bancos-de-dados-1
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../aula2.md" class="md-tabs__link">
+          
+  
+  
+  Modulo 1
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Bancos de Dados" class="md-nav__button md-logo" aria-label="Bancos de Dados" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Bancos de Dados
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/arthurrochamoreira/bancos-de-dados-1" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bancos-de-dados-1
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modulo 1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Modulo 1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aula2.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algebra relacional
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aula2_uniao.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    União
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-conceitos-basicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Conceitos Básicos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-ordem-de-execucao-das-clausulas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Ordem de Execução das Cláusulas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-aliases-de-tabela" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Aliases de Tabela
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-where-vs-having" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. WHERE vs HAVING
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-distinct-evitando-duplicatas-nos-joins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. DISTINCT: Evitando Duplicatas nos JOINs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-inner-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. INNER JOIN
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-left-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. LEFT JOIN
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-right-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. RIGHT JOIN
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-tabela-comparativa-de-joins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Tabela Comparativa de JOINs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-erros-comuns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Erros Comuns
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Aula 2</h1>
+
+<h3 id="1-conceitos-basicos">1. Conceitos Básicos</h3>
+<ul>
+<li><strong>Tabela:</strong> Uma coleção de dados organizados que representa uma entidade ou relacionamento. Exemplo: A tabela <code>Medico</code>.</li>
+<li><strong>Linha (Tupla):</strong> Representa um fato ou registro individual dentro da tabela. Exemplo: A linha contendo <code>1</code>, <code>Paulo Rangel</code>, <code>pr@eee.ccc.br</code>, <code>23453</code>, <code>1</code>.</li>
+<li><strong>Coluna (Atributo):</strong> Define o tipo de dado e o significado dos valores em cada linha. Exemplo: A coluna <code>valor</code> na tabela <code>Consulta</code>.</li>
+<li><strong>PK (Chave Primária - Primary Key):</strong> Atributo ou conjunto de atributos que identifica exclusivamente cada linha em uma tabela. Exemplo: O campo <code>codigo</code> na tabela <code>Medico</code>.</li>
+<li><strong>FK (Chave Estrangeira - Foreign Key):</strong> Atributo que referencia a Chave Primária de outra tabela para estabelecer um relacionamento. Exemplo: O campo <code>codmed</code> na tabela <code>Consulta</code> mapeia para a tabela <code>Medico</code>.</li>
+<li><strong>NULL:</strong> Representa um valor desconhecido, ausente ou não aplicável. Exemplo: O campo <code>codconv</code> em algumas linhas da tabela <code>Consulta</code> possui o valor NULL.</li>
+</ul>
+<hr />
+<h3 id="2-ordem-de-execucao-das-clausulas">2. Ordem de Execução das Cláusulas</h3>
+<p>A ordem em que você escreve uma consulta SQL (<code>SELECT</code> -&gt; <code>FROM</code> -&gt; <code>WHERE</code>...) não é a mesma ordem em que o motor do banco de dados a processa. A execução real segue esta sequência:</p>
+<ol>
+<li><strong>FROM:</strong> Localiza e carrega as tabelas necessárias.</li>
+<li><strong>WHERE:</strong> Filtra as linhas brutas com base em condições.</li>
+<li><strong>GROUP BY:</strong> Agrupa as linhas filtradas baseadas em atributos comuns.</li>
+<li><strong>HAVING:</strong> Filtra os grupos inteiros criados na etapa anterior.</li>
+<li><strong>SELECT:</strong> Extrai (projeta) as colunas específicas solicitadas.</li>
+<li><strong>ORDER BY:</strong> Classifica o resultado final antes de exibi-lo.</li>
+</ol>
+<p><strong>Por que difere?</strong> O banco de dados precisa primeiro saber de onde vêm os dados (<code>FROM</code>), aplicar os filtros individuais (<code>WHERE</code>) e realizar agrupamentos antes de poder projetar as colunas finais (<code>SELECT</code>) e ordená-las (<code>ORDER BY</code>). Seguir esse fluxo lógico otimiza a recuperação e processamento.</p>
+<hr />
+<h3 id="3-aliases-de-tabela">3. Aliases de Tabela</h3>
+<p>Aliases (apelidos) são nomes alternativos e temporários dados a tabelas (ou colunas) durante a consulta usando a sintaxe <code>FROM Tabela Apelido</code> ou <code>FROM Tabela AS Apelido</code>. </p>
+<p><strong>Por que usar?</strong> Eles economizam digitação e, o mais importante, resolvem ambiguidades quando você junta tabelas que possuem colunas com nomes idênticos ou quando junta uma tabela a si mesma.</p>
+<pre><code class="language-sql">-- &quot;M&quot; é o alias para Medico e &quot;C&quot; é o alias para Consulta
+SELECT M.nome, C.data
+FROM Medico M
+JOIN Consulta C ON M.codigo = C.codmed;
+</code></pre>
+<hr />
+<h3 id="4-where-vs-having">4. WHERE vs HAVING</h3>
+<ul>
+<li><strong>WHERE:</strong> É executado <em>antes</em> do agrupamento e serve para filtrar linhas individuais. Não pode conter funções de agregação (como <code>SUM</code> ou <code>COUNT</code>).</li>
+<li><strong>HAVING:</strong> É executado <em>depois</em> do agrupamento (<code>GROUP BY</code>) e serve para filtrar os grupos gerados, frequentemente utilizando funções de agregação.</li>
+</ul>
+<pre><code class="language-sql">SELECT M.nome, SUM(C.valor) as total_arrecadado
+FROM Medico M
+JOIN Consulta C ON M.codigo = C.codmed
+WHERE M.codcid = 1  -- Filtra médicos de uma cidade específica (linha a linha)
+GROUP BY M.nome
+HAVING SUM(C.valor) &gt; 100; -- Filtra apenas os grupos (médicos) com soma &gt; 100
+</code></pre>
+<hr />
+<h3 id="5-distinct-evitando-duplicatas-nos-joins">5. DISTINCT: Evitando Duplicatas nos JOINs</h3>
+<p><strong>Por que JOINs geram duplicatas?</strong> Ao usar JOIN entre uma tabela e outra (relacionamento 1:N), a linha da primeira tabela é repetida (redundância controlada) para cada correspondência encontrada na segunda tabela. Por exemplo, se o médico "Paulo Rangel" fez duas consultas, seu nome aparecerá duas vezes no resultado.</p>
+<p><strong>Como o DISTINCT resolve:</strong> A palavra-chave <code>DISTINCT</code> instrui o banco de dados a eliminar as linhas duplicadas do resultado final, garantindo que os valores apareçam apenas uma vez.</p>
+<pre><code class="language-sql">-- SEM DISTINCT: Retorna Paulo Rangel e Luara dos Santos múltiplas vezes
+SELECT M.nome 
+FROM Medico M 
+JOIN Consulta C ON M.codigo = C.codmed 
+WHERE M.codcid = 1;
+
+-- COM DISTINCT: Retorna cada nome apenas uma vez
+SELECT DISTINCT M.nome 
+FROM Medico M 
+JOIN Consulta C ON M.codigo = C.codmed 
+WHERE M.codcid = 1;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">nome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Paulo Rangel</td>
+</tr>
+<tr>
+<td style="text-align: left;">Luara dos Santos</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="6-inner-join">6. INNER JOIN</h3>
+<p>Retorna apenas as linhas que possuem correspondência em <strong>ambas</strong> as tabelas interligadas. Se um médico não fez nenhuma consulta, ele é excluído do resultado.</p>
+<pre><code class="language-sql">-- Traz apenas médicos que realizaram consultas com valor &gt; 100
+SELECT DISTINCT M.nome 
+FROM Medico M 
+JOIN Consulta C ON M.codigo = C.codmed 
+WHERE C.valor &gt; 100;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">nome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Luara dos Santos</td>
+</tr>
+<tr>
+<td style="text-align: left;">José Paulo O</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="7-left-join">7. LEFT JOIN</h3>
+<p>Retorna <strong>todas</strong> as linhas da tabela à esquerda (<code>Medico</code>), independentemente de haver correspondência na tabela à direita (<code>Consulta</code>). Onde não houver correspondência, o banco preenche os dados da tabela da direita com <code>NULL</code>.</p>
+<pre><code class="language-sql">-- Retorna todos os médicos da codcid = 1.
+-- Luan dos Santos e Carolina Pereira aparecem mesmo não tendo consultas (seus dados de C seriam NULL).
+SELECT DISTINCT M.nome 
+FROM Medico M 
+LEFT JOIN Consulta C ON M.codigo = C.codmed 
+WHERE M.codcid = 1;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">nome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Paulo Rangel</td>
+</tr>
+<tr>
+<td style="text-align: left;">Luara dos Santos</td>
+</tr>
+<tr>
+<td style="text-align: left;">Luan dos Santos</td>
+</tr>
+<tr>
+<td style="text-align: left;">Carolina Pereira</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="8-right-join">8. RIGHT JOIN</h3>
+<p>Retorna <strong>todas</strong> as linhas da tabela à direita (<code>Consulta</code>), preenchendo os dados da tabela à esquerda (<code>Medico</code>) com <code>NULL</code> caso não haja correspondência. </p>
+<pre><code class="language-sql">-- Retorna apenas os médicos atrelados a alguma consulta e que são da codcid = 1.
+SELECT DISTINCT M.nome 
+FROM Medico M 
+RIGHT JOIN Consulta C ON M.codigo = C.codmed 
+WHERE M.codcid = 1;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">nome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Paulo Rangel</td>
+</tr>
+<tr>
+<td style="text-align: left;">Luara dos Santos</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="9-tabela-comparativa-de-joins">9. Tabela Comparativa de JOINs</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tipo de JOIN</th>
+<th style="text-align: left;">O que retorna?</th>
+<th style="text-align: left;">Quando usar?</th>
+<th style="text-align: left;">Armadilhas Comuns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>INNER JOIN</strong></td>
+<td style="text-align: left;">Apenas as interseções. Exige correspondência nas duas tabelas.</td>
+<td style="text-align: left;">Quando você só quer dados completos (ex: apenas médicos que realizaram consultas).</td>
+<td style="text-align: left;">Perda de informações importantes se a existência na 2ª tabela não for obrigatória.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>LEFT JOIN</strong></td>
+<td style="text-align: left;">Tudo da tabela Esquerda + correspondências da Direita (ou NULL).</td>
+<td style="text-align: left;">Quando a tabela principal é a primeira e você não quer perder seus registros (ex: relatório de todos os médicos e suas consultas, se houver).</td>
+<td style="text-align: left;">Filtrar no <code>WHERE</code> por colunas da tabela da Direita pode anular o efeito do LEFT JOIN (veja abaixo).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RIGHT JOIN</strong></td>
+<td style="text-align: left;">Tudo da tabela Direita + correspondências da Esquerda (ou NULL).</td>
+<td style="text-align: left;">Mesmo cenário do LEFT JOIN, mas com a ordem de leitura das tabelas invertida.</td>
+<td style="text-align: left;">Menos usado por convenção, pode confundir a leitura estrutural da query.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="10-erros-comuns">10. Erros Comuns</h3>
+<ul>
+<li><strong>Filtro WHERE anulando um LEFT JOIN:</strong>
+    Se você usa um <code>LEFT JOIN</code> para garantir que registros sem correspondência apareçam (com NULL na tabela da direita), mas logo em seguida coloca uma condição <code>WHERE</code> exigindo um valor na tabela da direita (ex: <code>WHERE C.valor &gt; 50</code>), o banco eliminará as linhas NULL. Isso transforma seu <code>LEFT JOIN</code> em um <code>INNER JOIN</code> na prática. 
+    <em>Solução:</em> Mova condições sobre tabelas secundárias para a cláusula <code>ON</code> da junção.</li>
+<li><strong>A armadilha do <code>NULL = NULL</code>:</strong>
+    O SQL utiliza lógica de três valores (Verdadeiro, Falso e Desconhecido). Como o NULL representa um valor desconhecido, comparar <code>NULL = NULL</code> ou <code>NULL &lt;&gt; NULL</code> retorna um resultado "Desconhecido" e a linha é rejeitada pela cláusula WHERE. 
+    <em>Solução:</em> Utilize sempre <code>IS NULL</code> ou <code>IS NOT NULL</code>.</li>
+<li><strong>Duplicatas sem DISTINCT:</strong>
+    Ao conectar entidades de relacionamentos <code>1:N</code> (como 1 Médico para N Consultas), a projeção focada na tabela "1" produzirá cópias visuais se não utilizarmos o <code>DISTINCT</code> ou agruparmos os dados, pois a tupla é propagada multiplicativamente.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.sections", "navigation.index", "search.suggest", "search.highlight", "content.code.annotate", "content.code.copy", "header.autohide", "announce.dismiss"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      
+        <script src="../../js/interactive.js"></script>
+      
+        <script src="../../js/shooting-stars.js"></script>
+      
+        <script src="../../js/starfield.js"></script>
+      
+        <script src="../../js/night-sky.js"></script>
+      
+        <script src="../../js/translate.js"></script>
+      
+        <script src="../../js/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
